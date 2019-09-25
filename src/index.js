@@ -1,4 +1,5 @@
-import path from 'path'
-import log from './log'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-log('Hello World Carlos')
+ReactDOM.render(<App /> ,document.getElementById('root'))
