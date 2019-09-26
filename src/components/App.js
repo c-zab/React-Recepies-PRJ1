@@ -44,19 +44,18 @@ class App extends Component {
     return (
       <div>
         <Header></Header>
-        <main style={{ display: 'flex' }}>
+        <main className='px4 flex'>
           <RecipeList
             onClick={this.onRecipeClick}
             recipes={recipes}
             favoriteStep={favoriteStep}
-            style={{ flex:3 }}>
-          </RecipeList>
+            />
 
           <RecipeDetail
             recipe={currentRecipe}
             favorite={this.selectFavorite}
-            style={{ flex:5 }} >
-          </RecipeDetail>
+            className='ml4'
+          />
         </main>
       </div>
     )
