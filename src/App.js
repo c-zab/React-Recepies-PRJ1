@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Tree from './static/images/tree.jpg'
 
-class App extends Component {
-  render() {
-    return (
-      <h1>Hello from React!</h1>
-    )
-  }
-}
+const App = () => (
+  <div>
+    <h1>Hello from React!!!</h1>
+    <img src={Tree}></img>
+  </div>
+)
 
 export default App;
