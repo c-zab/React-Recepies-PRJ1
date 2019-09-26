@@ -1,21 +1,14 @@
 import React from 'react';
 
-const RecipeList = ({style}) => (
+const RecipeList = ({style, recipes, onClick}) => (
   <div style={style}>
     <h2>Recipes</h2>
     <ul>
-      <li>
-        <span>Praesentium impedit quo occaece.</span>
-        <span>Desert</span>
-      </li>
-      <li>
-        <span>Ea rem soluta quasiint quas.</span>
-        <span>Desert</span>
-      </li>
-      <li>
-        <span>Sed autem delectus incidunminima.</span>
-        <span>Desert</span>
-      </li>
+      {recipes.map(recipe => (
+        <li onClick={() => {onClick(recipe.id)}} key={recipe.id}>
+          <span>{recipe.name}</span>
+        </li>
+      ))}
     </ul>
   </div>
 );
