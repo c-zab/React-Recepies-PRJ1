@@ -1,63 +1,17 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './Home.jsx';
+import Favorite from './Favorite.jsx';
 import Header from './Header.jsx';
-import RecipeList from './RecipeList.jsx';
-import RecipeDetail from './RecipeDetail.jsx';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      recipes: [],
-      currentRecipe: null,
-      favoriteStep: 'asdasd',
-    };
-  }
-
-  componentDidMount() {
-    axios.get(`${API_URL}/v1/recipes`)
-      .then((res) => {
-        this.setState({
-          recipes: res.data,
-        });
-      })
-      .catch((err) => console.log(err));
-  }
-
-  onRecipeClick = (id) => {
-    axios.get(`${API_URL}/v1/recipes/${id}`)
-      .then((res) => {
-        this.setState({ currentRecipe: res.data });
-      })
-      .catch((err) => console.log(err));
-  }
-
-  selectFavorite = (step) => (
-    this.setState({ favoriteStep: step })
-  )
-
-  render() {
-    const { recipes, currentRecipe, favoriteStep } = this.state;
-    return (
-      <div>
-        <Header />
-        <main className="px4 flex">
-          <RecipeList
-            onClick={this.onRecipeClick}
-            recipes={recipes}
-            favoriteStep={favoriteStep}
-          />
-
-          <RecipeDetail
-            recipe={currentRecipe}
-            favorite={this.selectFavorite}
-            className="ml4"
-          />
-        </main>
-      </div>
-    );
-  }
-}
-
+const App = () => (
+  <BrowserRouter>
+    <main>
+      <Header />
+      <Route exact path="/" component={Home} />
+      <Route path="/favorite" component={Favorite} />
+    </main>
+  </BrowserRouter>
+);
 
 export default App;

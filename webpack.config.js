@@ -1,7 +1,7 @@
-const webpack = require('webpack')
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path')
-require('dotenv').config()
+const path = require('path');
+require('dotenv').config();
 
 module.exports = {
   mode: 'development',
@@ -9,14 +9,14 @@ module.exports = {
   entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: './bundle.js'
+    filename: './bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: 'babel-loader',
       },
       {
         test: /\.css$/,
@@ -29,18 +29,21 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
-          'file-loader'
-        ]
-      }
-    ]
+          'file-loader',
+        ],
+      },
+    ],
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
-      inject: 'body'
+      inject: 'body',
     }),
     new webpack.DefinePlugin({
-      API_URL: JSON.stringify(process.env.API_URL)
-    })
-  ]
-}
+      API_URL: JSON.stringify(process.env.API_URL),
+    }),
+  ],
+};
