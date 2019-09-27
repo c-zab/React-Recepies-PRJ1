@@ -29,5 +29,5 @@ module.exports = {
     "import/extensions": "off",
     "react/require-default-props": "off",
     "react/forbid-prop-types": "off",
-  },
+  }
 };
