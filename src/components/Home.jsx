@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       recipes: [],
       currentRecipe: null,
-      favoriteStep: 'asdasd',
+      favorites: [],
     };
   }
 
@@ -31,19 +31,26 @@ class App extends Component {
       .catch((err) => console.log(err));
   }
 
-  selectFavorite = (step) => (
-    this.setState({ favoriteStep: step })
+  addToFavorites = (id) => (
+    this.setState(({ favorites, ...state }) => {
+      const idx = favorites.indexOf(id);
+      if (idx !== -1) {
+        return { ...state, favorites: favorites.filter((item) => item !== id) };
+      }
+      return { ...state, favorites: [...favorites, id] };
+    })
   )
 
   render() {
-    const { recipes, currentRecipe, favoriteStep } = this.state;
+    const { recipes, currentRecipe, favorites } = this.state;
     return (
       <div>
         <main className="px4 flex">
           <RecipeList
             onClick={this.onRecipeClick}
             recipes={recipes}
-            favoriteStep={favoriteStep}
+            favorites={favorites}
+            addFavorite={this.addToFavorites}
           />
 
           <RecipeDetail
@@ -56,6 +63,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;

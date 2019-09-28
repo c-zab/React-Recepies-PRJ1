@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-const RecipeDetails = ({ recipe, favorite, className }) => {
+const RecipeDetails = ({ recipe, className }) => {
   if (!recipe) {
     return (
       <div className={classNames('h3 p2 bg-white italic center', className)}>
@@ -11,7 +11,6 @@ const RecipeDetails = ({ recipe, favorite, className }) => {
     );
   }
   return (
-    // <div className='col-9 pl4 p2 bg-white'>
     <div className={classNames('col-8 p2 bg-white', className)}>
       <h2 className="h2">{recipe.name}</h2>
       <img className="fit" src={recipe.image} alt="Recipe" />
@@ -27,8 +26,7 @@ const RecipeDetails = ({ recipe, favorite, className }) => {
       <h3>Ingredients</h3>
       <ul>
         {recipe.ingredients.map((ingredient, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <li onClick={() => { favorite(ingredient); }} key={index}>
+          <li key={index}>
             {ingredient}
           </li>
         ))}
@@ -45,7 +43,6 @@ const RecipeDetails = ({ recipe, favorite, className }) => {
 
 RecipeDetails.propTypes = {
   recipe: PropTypes.object,
-  favorite: PropTypes.func,
   className: PropTypes.string,
 };
 

@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RecipeListItem from './RecipeListItem.jsx';
 
-const RecipeList = ({ recipes, onClick }) => (
+const RecipeList = ({
+  recipes, favorites, onClick, addFavorite,
+}) => (
   <div className="col-3">
     <h2 className="h2">Recipes</h2>
     <ul className="list-reset">
       {recipes.map((recipe) => (
-        <li
-          onClick={() => { onClick(recipe.id); }}
+        <RecipeListItem
           key={recipe.id}
-          className="py2 border-bottom border-bottom-dashed pointer"
-        >
-          <span>{recipe.name}</span>
-        </li>
+          recipe={recipe}
+          favorited={favorites.includes(recipe.id)}
+          onClick={onClick}
+          addFavorite={addFavorite}
+        />
       ))}
     </ul>
   </div>
@@ -21,6 +24,8 @@ const RecipeList = ({ recipes, onClick }) => (
 RecipeList.propTypes = {
   recipes: PropTypes.array,
   onClick: PropTypes.func,
+  addFavorite: PropTypes.func,
+  favorites: PropTypes.array,
 };
 
 export default RecipeList;
