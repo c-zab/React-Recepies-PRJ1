@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const RecipeListItem = ({
-  recipe, onClick, addFavorite, favorited,
+  recipe, onClick, toggleFavorite, favorited,
 }) => (
   <li
     onClick={() => { onClick(recipe.id); }}
@@ -13,7 +13,7 @@ const RecipeListItem = ({
       aria-label="emoji"
       onClick={(e) => {
         e.stopPropagation();
-        addFavorite(recipe.id);
+        toggleFavorite(recipe.id);
       }}
     >
       { (favorited) ? '✅' : '🔲' }
@@ -25,7 +25,7 @@ const RecipeListItem = ({
 RecipeListItem.propTypes = {
   recipe: PropTypes.object,
   onClick: PropTypes.func,
-  addFavorite: PropTypes.func,
+  toggleFavorite: PropTypes.func,
   favorited: PropTypes.bool,
 };
 

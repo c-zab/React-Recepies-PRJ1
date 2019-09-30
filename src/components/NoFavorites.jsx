@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NotFound = () => (
-  <h2 className="h2 px4">Not Found</h2>
+  <h3 className="h3 px4">No favorites selected yet!</h3>
 );
 
 export default NotFound;

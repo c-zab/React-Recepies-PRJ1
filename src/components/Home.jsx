@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import RecipeList from './RecipeList.jsx';
 import RecipeDetail from './RecipeDetail.jsx';
 
@@ -7,20 +8,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: [],
       currentRecipe: null,
-      favorites: [],
     };
-  }
-
-  componentDidMount() {
-    axios.get(`${API_URL}/v1/recipes`)
-      .then((res) => {
-        this.setState({
-          recipes: res.data,
-        });
-      })
-      .catch((err) => console.log(err));
   }
 
   onRecipeClick = (id) => {
@@ -31,31 +20,21 @@ class App extends Component {
       .catch((err) => console.log(err));
   }
 
-  addToFavorites = (id) => (
-    this.setState(({ favorites, ...state }) => {
-      const idx = favorites.indexOf(id);
-      if (idx !== -1) {
-        return { ...state, favorites: favorites.filter((item) => item !== id) };
-      }
-      return { ...state, favorites: [...favorites, id] };
-    })
-  )
-
   render() {
-    const { recipes, currentRecipe, favorites } = this.state;
+    const { currentRecipe } = this.state;
+    const { recipes, favorites, toggleToFavorites } = this.props;
     return (
       <div>
-        <main className="px4 flex">
+        <main className="flex px4">
           <RecipeList
             onClick={this.onRecipeClick}
             recipes={recipes}
             favorites={favorites}
-            addFavorite={this.addToFavorites}
+            toggleFavorite={toggleToFavorites}
+            className="col-3"
           />
-
           <RecipeDetail
             recipe={currentRecipe}
-            favorite={this.selectFavorite}
             className="ml4"
           />
         </main>
@@ -63,5 +42,11 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  recipes: PropTypes.array,
+  favorites: PropTypes.array,
+  toggleToFavorites: PropTypes.func,
+};
 
 export default App;

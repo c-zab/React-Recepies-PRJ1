@@ -22,7 +22,7 @@ const Header = () => (
     </h1>
     <nav>
       <HeaderLink to="/">Home</HeaderLink>
-      <HeaderLink to="/favorite">Favorite</HeaderLink>
+      <HeaderLink to="/favorites">Favorites</HeaderLink>
     </nav>
   </header>
 );
