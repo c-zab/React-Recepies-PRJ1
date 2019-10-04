@@ -6,6 +6,7 @@ import axios from 'axios';
 import Home from './Home.jsx';
 import Favorite from './Favorite.jsx';
 import Header from './Header.jsx';
+import Recipe from './Recipe.jsx';
 import NotFound from './NotFound.jsx';
 import Error from './Error.jsx';
 
@@ -79,6 +80,7 @@ class App extends Component {
               )}
 
             />
+            <Route path="/recipe/:id" component={Recipe} />
             <Route component={NotFound} />
           </Switch>
         </main>

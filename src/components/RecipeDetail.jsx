@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const RecipeDetails = ({ recipe, className }) => {
@@ -37,6 +38,7 @@ const RecipeDetails = ({ recipe, className }) => {
           <li key={index}>{step}</li>
         ))}
       </ol>
+      <Link to={`/recipe/${recipe.id}`}>See more</Link>
     </div>
   );
 };
