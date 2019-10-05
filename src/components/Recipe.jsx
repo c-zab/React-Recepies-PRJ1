@@ -12,9 +12,8 @@ class Recipe extends Component {
   }
 
   componentDidMount() {
-    // eslint-disable-next-line react/destructuring-assignment
-    const { id } = this.props.match.params;
-    axios.get(`${API_URL}/v1/recipes/${id}`)
+    const { match: { params } } = this.props;
+    axios.get(`${API_URL}/v1/recipes/${params.id}`)
       .then((res) => {
         this.setState({ recipe: res.data });
       })
